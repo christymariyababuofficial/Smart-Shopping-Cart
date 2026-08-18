@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoCart | Human-Following Autonomous Shopping Cart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="logo">
+      🛒 Auto<span>Cart</span>
+    </div>
+    <div class="status-badge">
+      <span class="status-dot"></span>
+      Stage: 3D-Print Ready
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Header Hero -->
+    <header>
+      <h1>Autonomous Human-Following Shopping Cart</h1>
+      <p class="subtitle">
+        A low-cost, modular robotics solution designed to maintain distance, navigate obstacle-dense retail environments, and streamline retail shopping.
+      </p>
+      <div class="cta-group">
+        <button class="btn btn-primary" id="simBtn">Try Simulation</button>
+        <a href="#roadmap" class="btn btn-secondary">Development Roadmap</a>
+      </div>
+    </header>
+
+    <!-- Key Technical Features -->
+    <section id="features">
+      <h2 class="section-title">System Architecture</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>🎯 Smart Position Tracking</h3>
+          <p>Sensory feedback continually estimates customer distance and orientation to lock onto targets smoothly.</p>
+        </div>
+        <div class="card">
+          <h3>🛡️ Obstacle Avoidance</h3>
+          <p>Real-time proximity processing halts motion or redirects trajectories to prevent collisions with store shelves and shoppers.</p>
+        </div>
+        <div class="card">
+          <h3>⚡ Microcontroller Core</h3>
+          <p>Low-latency onboard signal processor calculates differential motor driving parameters on the fly.</p>
+        </div>
+        <div class="card">
+          <h3>📦 Modular & Low-Cost</h3>
+          <p>Designed for rapid deployment and easy retrofitting onto existing supermarket cart infrastructure.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hardware Architecture Breakdown (Interactive Tabs) -->
+    <section id="hardware">
+      <h2 class="section-title">Hardware Architecture Breakdown</h2>
+      
+      <div class="tabs-container">
+        <!-- Tab Controls -->
+        <div class="tab-buttons">
+          <button class="tab-btn active" data-tab="tab-sensors">📡 Sensors (LiDAR & Ultrasonic)</button>
+          <button class="tab-btn" data-tab="tab-controller">🧠 Microcontroller Unit</button>
+          <button class="tab-btn" data-tab="tab-actuators">⚙️ Motor Drivers & Actuators</button>
+          <button class="tab-btn" data-tab="tab-power">🔋 Power Management</button>
+        </div>
+
+        <!-- Tab Contents -->
+        <div class="tab-content-wrapper">
+          
+          <!-- Sensors Tab -->
+          <div id="tab-sensors" class="tab-content active">
+            <div class="hw-grid">
+              <div class="hw-card">
+                <h4>2D LiDAR / Ultrasonic Sensor Array</h4>
+                <p><strong>Primary Function:</strong> Target tracking & dynamic distance mapping.</p>
+                <ul>
+                  <li>Scans surrounding environment in real time to locate user relative to cart</li>
+                  <li>Determines distance thresholds to maintain comfortable following gap</li>
+                  <li>Detects blind spots around lower frame perimeter</li>
+                </ul>
+              </div>
+              <div class="hw-card">
+                <h4>Infrared (IR) Proximity Sensors</h4>
+                <p><strong>Primary Function:</strong> Emergency bumper protection.</p>
+                <ul>
+                  <li>Provides sub-millisecond interrupt signals to prevent low-height obstacle collision</li>
+                  <li>Guards against sudden obstacles appearing directly in front or back of wheels</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Microcontroller Tab -->
+          <div id="tab-controller" class="tab-content">
+            <div class="hw-grid">
+              <div class="hw-card">
+                <h4>32-Bit Microcontroller Unit (MCU)</h4>
+                <p><strong>Primary Function:</strong> Central decision-making, signal filtering, and motor control loop.</p>
+                <ul>
+                  <li>Executes sensor-fusion algorithms to filter signal noise from supermarket aisles</li>
+                  <li>Runs closed-loop PID control for smooth acceleration, steering, and braking</li>
+                  <li>Processes serial communication from sensor arrays with low latency</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Motor Drivers & Actuators Tab -->
+          <div id="tab-actuators" class="tab-content">
+            <div class="hw-grid">
+              <div class="hw-card">
+                <h4>Dual H-Bridge Motor Driver</h4>
+                <p><strong>Primary Function:</strong> High-current power translation for drive motors.</p>
+                <ul>
+                  <li>Receives PWM control signals from MCU to adjust motor velocity independently</li>
+                  <li>Integrated thermal shutdown and current-sensing feedback for motor protection</li>
+                </ul>
+              </div>
+              <div class="hw-card">
+                <h4>High-Torque DC Geared Motors + Encoders</h4>
+                <p><strong>Primary Function:</strong> Differential wheel drive system.</p>
+                <ul>
+                  <li>High-gear ratio tuned to haul fully loaded shopping payloads up to standard store ramps</li>
+                  <li>Optical/magnetic quadrature encoders provide real-time wheel speed feedback</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Power Tab -->
+          <div id="tab-power" class="tab-content">
+            <div class="hw-grid">
+              <div class="hw-card">
+                <h4>Rechargeable Lithium Battery Pack</h4>
+                <p><strong>Primary Function:</strong> Uninterrupted power delivery.</p>
+                <ul>
+                  <li>Dual voltage rails: High-discharge rail for motors, regulated 5V/3.3V supply for logic components</li>
+                  <li>Integrated Battery Management System (BMS) with cell balancing and charge monitoring</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Concept Simulation -->
+    <section id="simulation">
+      <h2 class="section-title">Interactive Tracking Logic Demo</h2>
+      <div class="sim-container">
+        <p>Move your mouse (or touch) over the canvas to simulate customer movement. The autonomous cart follows while maintaining a safe dynamic threshold.</p>
+        <canvas id="simCanvas"></canvas>
+        <div class="sim-controls">
+          <span>🟢 Green: Customer</span>
+          <span>🔵 Blue: AutoCart</span>
+          <span>🔴 Red Circle: Safe Buffer Zone</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Roadmap -->
+    <section id="roadmap">
+      <h2 class="section-title">Development Roadmap</h2>
+      <div class="timeline">
+        <div class="timeline-step completed">
+          <h4>Phase 1: Conceptual Design & CAD Modeling</h4>
+          <p>Completed 3D-print-ready chassis, motor mounting brackets, and sensor bay enclosures.</p>
+        </div>
+        <div class="timeline-step active">
+          <h4>Phase 2: Fabrication & Printing</h4>
+          <p>Currently producing physical component parts and assembling structural frame.</p>
+        </div>
+        <div class="timeline-step">
+          <h4>Phase 3: Electronics Integration</h4>
+          <p>Wiring microcontrollers, motor drivers, sensor arrays, and power management units.</p>
+        </div>
+        <div class="timeline-step">
+          <h4>Phase 4: Real-World Testing</h4>
+          <p>Field trials in mock retail environments for PID loop tuning and obstacle safety validation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2026 AutoCart Project. Low-Cost Modular Autonomous Vehicle Research.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
